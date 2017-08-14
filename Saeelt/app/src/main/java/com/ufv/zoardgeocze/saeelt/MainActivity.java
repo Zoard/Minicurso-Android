@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,7 +52,8 @@ public class MainActivity extends AppCompatActivity {
             case LISTA:
                 if(!this.locais.isEmpty()) {
                     Intent intent = new Intent(this,LocaisActivity.class);
-                    intent.putExtra("local",this.locais.get(0));
+                    //intent.putExtra("local",this.locais.get(0));
+                    intent.putStringArrayListExtra("locais", (ArrayList<String>) this.locais); // Parte 5
                     startActivity(intent);
                 }
 
