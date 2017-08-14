@@ -1,5 +1,7 @@
 package com.ufv.zoardgeocze.saeelt;
 
+import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -39,6 +41,25 @@ public class MainActivity extends AppCompatActivity {
         MenuItem item = menu.add(0,LISTA,1,"Lista de Locais");
 
         return true;
+    }
+
+    //Parte 4 - Selecionar um Menu e Navegar entre telas
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch(item.getItemId()) {
+            case LISTA:
+                if(!this.locais.isEmpty()) {
+                    Intent intent = new Intent(this,LocaisActivity.class);
+                    intent.putExtra("local",this.locais.get(0));
+                    startActivity(intent);
+                }
+
+                //Toast.makeText(this,"Clicou para ver a lista de locais", Toast.LENGTH_SHORT).show();
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     //Parte 2
