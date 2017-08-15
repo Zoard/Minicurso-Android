@@ -10,6 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.ufv.zoardgeocze.saeelt.adapter.LocalAdapter;
 import com.ufv.zoardgeocze.saeelt.modelo.Local;
 
 import java.util.ArrayList;
@@ -40,21 +41,24 @@ public class LocaisActivity extends AppCompatActivity {
         Bundle bundle = intent.getExtras();
 
         this.locais = (List<Local>) bundle.getSerializable("locais");
-        Toast.makeText(this,"Nome: " + this.locais.get(0).getNome() + " Categoria: " + this.locais.get(0).getCategoria(),Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this,"Nome: " + this.locais.get(0).getNome() + " Categoria: " + this.locais.get(0).getCategoria(),Toast.LENGTH_SHORT).show();
 
         this.listaLocais = (ListView) findViewById(R.id.locais_lista);
-
         //ArrayAdapter<String> adapter = new ArrayAdapter<>(this,R.layout.item_locais,this.locais);
 
-        //this.listaLocais.setAdapter(adapter);
+        //Parte 8
+        LocalAdapter adapter = new LocalAdapter(this,this.locais);
 
-        /*this.listaLocais.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        this.listaLocais.setAdapter(adapter);
+
+        this.listaLocais.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String nome = (String) adapterView.getAdapter().getItem(i);
-                Toast.makeText(view.getContext(),"Clicou em " + nome,Toast.LENGTH_SHORT).show();
+                //String nome = (String) adapterView.getAdapter().getItem(i);
+                Local local = (Local) adapterView.getAdapter().getItem(i);
+                Toast.makeText(view.getContext(),"Clicou em " + local.getNome(),Toast.LENGTH_SHORT).show();
             }
-        });*/
+        });
 
 
     }
