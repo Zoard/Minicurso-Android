@@ -24,6 +24,14 @@
         android:textSize="18sp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"/>
+    
+    <Spinner
+        android:id="@+id/categoria_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/local_nome"
+        android:layout_margin="20dp">
+    </Spinner>
 
     <Button
         android:id="@+id/checkin_botao"
