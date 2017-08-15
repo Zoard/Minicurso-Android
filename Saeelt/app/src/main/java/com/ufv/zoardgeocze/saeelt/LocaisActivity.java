@@ -40,12 +40,13 @@ public class LocaisActivity extends AppCompatActivity {
 
         this.listaLocais.setAdapter(adapter);
 
-        /*this.listaLocais.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        this.listaLocais.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
+                String nome = (String) adapterView.getAdapter().getItem(i);
+                Toast.makeText(view.getContext(),"Clicou em " + nome,Toast.LENGTH_SHORT).show();
             }
-        });*/
+        });
 
 
     }
