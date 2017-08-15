@@ -14,14 +14,16 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.ufv.zoardgeocze.saeelt.modelo.Local;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    //Parte 2
-    private List<String> locais = new ArrayList<>();
+    //Parte 2 (List<String>) - Parte 7 List<Local>
+    private List<Local> locais = new ArrayList<>();
     //Parte 2
     private EditText nomeLocal;
     //Parte 3
@@ -30,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
     private String[] categorias = {"-","Restaurante","Bar","Cinema","Universidade","Estádio","Parque","outros"};
     //Parte 6
     private Spinner categoriaCombo;
+    //Parte 7
+    private String categoriaLocal;
 
 
     @Override
@@ -51,7 +55,11 @@ public class MainActivity extends AppCompatActivity {
                 String categoria = (String) adapterView.getAdapter().getItem(i);
                 if(!categoria.equals("-")) {
                     Toast.makeText(view.getContext(), "Categoria escolhida é " + categoria, Toast.LENGTH_SHORT).show();
+                    //parte 7
                 }
+
+                categoriaLocal = categoria;
+
             }
 
             @Override
@@ -80,7 +88,13 @@ public class MainActivity extends AppCompatActivity {
                 if(!this.locais.isEmpty()) {
                     Intent intent = new Intent(this,LocaisActivity.class);
                     //intent.putExtra("local",this.locais.get(0));
-                    intent.putStringArrayListExtra("locais", (ArrayList<String>) this.locais); // Parte 5
+                    //intent.putStringArrayListExtra("locais", (ArrayList<String>) this.locais); // Parte 5
+
+                    //Parte 7
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("locais", (Serializable) this.locais);
+                    intent.putExtras(bundle);
+
                     startActivity(intent);
                 }
 
@@ -94,14 +108,18 @@ public class MainActivity extends AppCompatActivity {
     //Parte 2
     public void checkIn(View view) {
         String local = String.valueOf(this.nomeLocal.getText());
-        if (!local.equals("")) {
-            this.locais.add(local);
-            Toast.makeText(this, local + " adicionado!" ,Toast.LENGTH_SHORT).show();
+        if (!local.equals("") && !categoriaLocal.equals("-")) {
+
+            //Parte 7
+            Local objetoLocal = new Local(local,this.categoriaLocal);
+
+            this.locais.add(objetoLocal);
+            Toast.makeText(this, objetoLocal.getNome() + " adicionado!" ,Toast.LENGTH_SHORT).show();
 
             this.nomeLocal.setText("");
 
         } else {
-            Toast.makeText(this, "Nome do Local é obrigatório", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Nome do Local e Categoria são obrigatórios", Toast.LENGTH_SHORT).show();
         }
 
         //Parte 2

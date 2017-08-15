@@ -10,6 +10,8 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.ufv.zoardgeocze.saeelt.modelo.Local;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,8 +20,8 @@ public class LocaisActivity extends AppCompatActivity {
 
     //parte 5
     private ListView listaLocais;
-    //Parte 5
-    private List<String> locais = new ArrayList<>();
+    //Parte 5 (List<String>) - Parte 7 (List<Local>)
+    private List<Local> locais = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,21 +34,27 @@ public class LocaisActivity extends AppCompatActivity {
         //Toast.makeText(this,local,Toast.LENGTH_SHORT).show();
 
         //Parte 5
-        this.locais = intent.getStringArrayListExtra("locais");
+        //this.locais = intent.getStringArrayListExtra("locais");
+
+        //Parte 7
+        Bundle bundle = intent.getExtras();
+
+        this.locais = (List<Local>) bundle.getSerializable("locais");
+        Toast.makeText(this,"Nome: " + this.locais.get(0).getNome() + " Categoria: " + this.locais.get(0).getCategoria(),Toast.LENGTH_SHORT).show();
 
         this.listaLocais = (ListView) findViewById(R.id.locais_lista);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,R.layout.item_locais,this.locais);
+        //ArrayAdapter<String> adapter = new ArrayAdapter<>(this,R.layout.item_locais,this.locais);
 
-        this.listaLocais.setAdapter(adapter);
+        //this.listaLocais.setAdapter(adapter);
 
-        this.listaLocais.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        /*this.listaLocais.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String nome = (String) adapterView.getAdapter().getItem(i);
                 Toast.makeText(view.getContext(),"Clicou em " + nome,Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
 
 
     }
