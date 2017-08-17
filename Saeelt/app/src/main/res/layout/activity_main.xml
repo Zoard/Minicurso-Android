@@ -33,6 +33,55 @@
         android:layout_margin="20dp">
     </Spinner>
 
+    <TextView
+        android:id="@+id/posicao_titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/categoria_spinner"
+        android:layout_centerHorizontal="true"
+        android:text="Posicionamento Global"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_marginBottom="20dp"/>
+
+    <TextView
+        android:id="@+id/lat_titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/posicao_titulo"
+        android:text="Latitude:"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/latitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/lat_titulo"
+        android:layout_toRightOf="@+id/lat_titulo"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/lng_titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Longitude: "
+        android:layout_below="@+id/lat_titulo"
+        android:layout_marginRight="17dp"
+        android:layout_marginBottom="50dp"
+        android:layout_marginLeft="20dp"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/longitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/lng_titulo"
+        android:layout_toRightOf="@+id/lng_titulo"
+        android:textSize="18sp"/>
+
     <Button
         android:id="@+id/checkin_botao"
         android:text="Check-in"

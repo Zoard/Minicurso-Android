@@ -11,10 +11,14 @@ public class Local implements Serializable {
 
     private String nome;
     private String categoria;
+    private Double latitude;
+    private Double longitude;
 
-    public Local(String nome, String categoria) {
+    public Local(String nome, String categoria, Double latitude, Double longitude) {
         this.nome = nome;
         this.categoria = categoria;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public String getNome() {

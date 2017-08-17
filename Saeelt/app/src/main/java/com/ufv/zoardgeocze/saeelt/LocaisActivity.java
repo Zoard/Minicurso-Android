@@ -60,6 +60,5 @@ public class LocaisActivity extends AppCompatActivity {
             }
         });
 
-
     }
 }
