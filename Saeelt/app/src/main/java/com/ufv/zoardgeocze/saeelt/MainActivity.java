@@ -44,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int REFRESH = 1;
 
+    //Parte 10
+    private static final int MAPA = 2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
 
         MenuItem item = menu.add(0,LISTA,1,"Lista de Locais");
         item = menu.add(0,REFRESH,2,"Refresh Posição");
+        item = menu.add(0,MAPA,3,"Mapa");
 
         return true;
     }
@@ -127,6 +131,19 @@ public class MainActivity extends AppCompatActivity {
             case REFRESH:
                 refreshLocal();
                 break;
+            case MAPA:
+                if(!this.locais.isEmpty()) {
+                    Intent intent = new Intent(this,MapaActivity.class);
+                    //intent.putExtra("local",this.locais.get(0));
+                    //intent.putStringArrayListExtra("locais", (ArrayList<String>) this.locais); // Parte 5
+
+                    //Parte 7
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("locais", (Serializable) this.locais);
+                    intent.putExtras(bundle);
+
+                    startActivity(intent);
+                }
         }
 
         return super.onOptionsItemSelected(item);
@@ -155,5 +172,12 @@ public class MainActivity extends AppCompatActivity {
         //Parte 2
         Log.i("TAMANHO_VETOR_LOCAIS: ", String.valueOf(this.locais.size()));
 
+    }
+
+    //Parte 10
+    @Override
+    protected void onDestroy() {
+        this.localizador.getClient().disconnect();
+        super.onDestroy();
     }
 }

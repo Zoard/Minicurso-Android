@@ -45,6 +45,11 @@ public class Localizador implements GoogleApiClient.ConnectionCallbacks, com.goo
         this.context = context;
     }
 
+    //parte 10
+    public GoogleApiClient getClient() {
+        return this.client;
+    }
+
     public LatLng getCoordenada() {
         return coordenada;
     }
